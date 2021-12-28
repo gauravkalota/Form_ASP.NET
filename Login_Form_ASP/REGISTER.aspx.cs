@@ -22,8 +22,10 @@ namespace Login_Form_ASP
         protected void Button1_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(cs);
-            string query = "insert into  signup values(@fname,@lname,@gender,@email,@address,@username,@password)";
-            SqlCommand cmd = new SqlCommand(query, con);
+            //string query = "insert into  signup values(@fname,@lname,@gender,@email,@address,@username,@password)";
+            //string query = "sp_SignupForm";
+            SqlCommand cmd = new SqlCommand("sp_signupData", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fname", FirstNameTextBox.Text);
             cmd.Parameters.AddWithValue("@lname", LastNameTextBox.Text);
             cmd.Parameters.AddWithValue("@gender", DropDownList1.SelectedItem.Value);
